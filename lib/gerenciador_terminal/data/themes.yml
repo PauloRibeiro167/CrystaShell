@@ -1,0 +1,31 @@
+# Exemplo de temas para CrystaShell
+# Você pode adicionar, editar ou remover temas conforme desejar
+
+temas:
+  - nome: "Padrão"
+    prompt_cor: "green"
+
+    sucesso_cor: "blue"
+    erro_cor: "red"
+    destaque_cor: "yellow"
+
+  - nome: "Solarized Dark"
+    prompt_cor: "cyan"
+    fundo_cor: "black"
+    sucesso_cor: "magenta"
+    erro_cor: "red"
+    destaque_cor: "yellow"
+
+  - nome: "Monokai"
+    prompt_cor: "yellow"
+    fundo_cor: "black"
+    sucesso_cor: "green"
+    erro_cor: "red"
+    destaque_cor: "blue"
+
+  - nome: "Teste"
+    prompt_cor: "white"
+    fundo_cor: "blue"
+    sucesso_cor: "green"
+    erro_cor: "magenta"
+    destaque_cor: "cyan"

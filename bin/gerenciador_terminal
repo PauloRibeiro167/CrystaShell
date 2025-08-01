@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'zeitwerk'
+require 'tty-prompt'
+require 'pastel'
+
+loader = Zeitwerk::Loader.new
+loader.push_dir File.expand_path('../lib', __dir__)
+loader.setup
+data_path = File.expand_path('../lib/gerenciador_terminal/data', __dir__)
+config_loader = GerenciadorTerminal::Nucleo::CarregadorConfig.new(data_path)
+GerenciadorTerminal::Interface::MenuPrincipal.new(data_path, config_loader).executar

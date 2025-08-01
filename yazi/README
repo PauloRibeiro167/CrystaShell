@@ -1,0 +1,67 @@
+# 🚀 Atalhos de Teclado Personalizados para Yazi
+
+Este documento descreve a configuração de atalhos de teclado personalizados para o gerenciador de arquivos de terminal `yazi`. O objetivo é criar uma experiência de usuário mais produtiva e intuitiva, inspirada em editores modernos como o VS Code e na agilidade de navegação do Vim.
+
+## 📋 Como Instalar
+
+Para utilizar estes atalhos, copie o conteúdo do arquivo `keymap.toml` para o diretório de configuração do Yazi:
+
+```bash
+~/.config/yazi/keymap.toml
+```
+
+Se o diretório `yazi` ou o arquivo `keymap.toml` não existirem, você pode criá-los.
+
+---
+
+## ⌨️ Tabela de Atalhos
+
+Abaixo está um resumo dos principais atalhos configurados.
+
+### Navegação Principal
+
+| Atalho              | Ação                                | Descrição                                     |
+| :------------------ | :---------------------------------- | :---------------------------------------------- |
+| `j` ou `Seta Baixo` | Mover para baixo                    | Navega para o item inferior na lista.           |
+| `k` ou `Seta Cima`  | Mover para cima                     | Navega para o item superior na lista.           |
+| `h` ou `Seta Esq.`  | Voltar um nível                     | Vai para o diretório pai.                       |
+| `l` ou `Seta Dir.`  | Entrar no diretório                 | Se for um diretório, entra nele.                |
+| `<Enter>`           | Entrar no diretório                 | Se for um diretório, entra nele.                |
+
+### Ações em Arquivos
+
+| Atalho              | Ação                                | Descrição                                     |
+| :------------------ | :---------------------------------- | :---------------------------------------------- |
+| `l` ou `Seta Dir.`  | Abrir arquivo com Neovim            | Se for um arquivo, abre com `nvim`.             |
+| `<Enter>`           | Abrir arquivo com Neovim            | Se for um arquivo, abre com `nvim`.             |
+| `C-r`               | Renomear                            | Abre um prompt para renomear o item selecionado.|
+
+### Funcionalidades (Estilo VS Code)
+
+| Atalho              | Ação                                | Descrição                                     |
+| :------------------ | :---------------------------------- | :---------------------------------------------- |
+| `C-p`               | Pesquisar Arquivos                  | Abre um campo de busca para encontrar arquivos. |
+| `C-t`               | Alternar Terminal                   | Abre ou fecha o painel de tarefas/terminal.     |
+
+### Utilitários
+
+| Atalho              | Ação                                | Descrição                                     |
+| :------------------ | :---------------------------------- | :---------------------------------------------- |
+| `q`                 | Sair do Yazi                        | Fecha a aplicação.                              |
+| `C-s`               | Abrir Shell                         | Abre uma nova sessão de shell no diretório atual.|
+
+---
+
+## ✨ Explicações Detalhadas
+
+### Abrir Arquivos com Neovim (`Enter` / `l`)
+O comportamento padrão foi modificado para ser mais direto. Ao pressionar `Enter` ou `l`:
+- **Em um diretório:** Você entra no diretório, como esperado.
+- **Em um arquivo:** O arquivo é aberto diretamente no **Neovim**. O Yazi aguardará o fechamento do Neovim para que você possa continuar a navegação.
+
+### Terminal Integrado (`Ctrl+t`)
+Inspirado no VS Code, este atalho alterna a visibilidade do painel de tarefas na parte inferior da tela. É perfeito para executar comandos rápidos (como `git status` ou `ls -la`) sem precisar sair do Yazi. Pressione uma vez para abrir e novamente para fechar.
+
+### Busca Rápida de Arquivos (`Ctrl+p`)
+Este atalho abre um campo de busca que permite encontrar arquivos rapidamente dentro do diretório atual e de seus subdiretórios. É uma forma muito eficiente de navegar para um arquivo específico sem precisar procurá-lo manualmente.
+

@@ -1,0 +1,1 @@
+/home/paulo/.config/zsh/.p10k.zsh

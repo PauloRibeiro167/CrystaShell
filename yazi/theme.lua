@@ -1,0 +1,1 @@
+/home/paulo/.config/yazi/theme.toml

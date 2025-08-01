@@ -1,0 +1,1 @@
+/home/paulo/.config/yazi/yazi.toml

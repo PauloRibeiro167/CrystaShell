@@ -1,1 +1,0 @@
-/home/paulo/.config/yazi/keymap.toml

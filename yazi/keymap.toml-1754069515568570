@@ -1,0 +1,150 @@
+# CrystaShell - Configuração de Atalhos do Yazi
+# Sistema completo de navegação por abas
+
+# Criar nova aba
+[[manager.prepend_keymap]]
+on = "t"
+run = "tab_create --current"
+desc = "Criar nova aba no diretório atual"
+
+[[manager.prepend_keymap]]
+on = [ "<C-n>" ]
+run = "tab_create --current"
+desc = "Criar nova aba (Ctrl+N)"
+
+# Fechar aba atual
+[[manager.prepend_keymap]]
+on = [ "<C-w>" ]
+run = "tab_close 0"
+desc = "Fechar aba atual"
+
+[[manager.prepend_keymap]]
+on = [ "<C-q>" ]
+run = "tab_close 0"
+desc = "Fechar aba atual (Ctrl+Q)"
+
+# Navegação entre abas - Tab/Shift+Tab
+[[manager.prepend_keymap]]
+on = [ "<Tab>" ]
+run = "tab_switch 1 --relative"
+desc = "Próxima aba"
+
+[[manager.prepend_keymap]]
+on = [ "<S-Tab>" ]
+run = "tab_switch -1 --relative"
+desc = "Aba anterior"
+
+# Navegação estilo browser
+[[manager.prepend_keymap]]
+on = [ "<C-Tab>" ]
+run = "tab_switch 1 --relative"
+desc = "Próxima aba (Ctrl+Tab)"
+
+[[manager.prepend_keymap]]
+on = [ "<C-S-Tab>" ]
+run = "tab_switch -1 --relative"
+desc = "Aba anterior (Ctrl+Shift+Tab)"
+
+# Setas direcionais
+[[manager.prepend_keymap]]
+on = [ "<C-Right>" ]
+run = "tab_switch 1 --relative"
+desc = "Próxima aba (Ctrl+→)"
+
+[[manager.prepend_keymap]]
+on = [ "<C-Left>" ]
+run = "tab_switch -1 --relative"
+desc = "Aba anterior (Ctrl+←)"
+
+# Acesso direto às abas (Alt+número)
+[[manager.prepend_keymap]]
+on = [ "<A-1>" ]
+run = "tab_switch 0"
+desc = "Ir para aba 1"
+
+[[manager.prepend_keymap]]
+on = [ "<A-2>" ]
+run = "tab_switch 1"
+desc = "Ir para aba 2"
+
+[[manager.prepend_keymap]]
+on = [ "<A-3>" ]
+run = "tab_switch 2"
+desc = "Ir para aba 3"
+
+[[manager.prepend_keymap]]
+on = [ "<A-4>" ]
+run = "tab_switch 3"
+desc = "Ir para aba 4"
+
+[[manager.prepend_keymap]]
+on = [ "<A-5>" ]
+run = "tab_switch 4"
+desc = "Ir para aba 5"
+
+[[manager.prepend_keymap]]
+on = [ "<A-6>" ]
+run = "tab_switch 5"
+desc = "Ir para aba 6"
+
+[[manager.prepend_keymap]]
+on = [ "<A-7>" ]
+run = "tab_switch 6"
+desc = "Ir para aba 7"
+
+[[manager.prepend_keymap]]
+on = [ "<A-8>" ]
+run = "tab_switch 7"
+desc = "Ir para aba 8"
+
+[[manager.prepend_keymap]]
+on = [ "<A-9>" ]
+run = "tab_switch 8"
+desc = "Ir para aba 9"
+
+# Navegação estilo Vim
+[[manager.prepend_keymap]]
+on = [ "g", "t" ]
+run = "tab_switch 1 --relative"
+desc = "Próxima aba (estilo Vim)"
+
+[[manager.prepend_keymap]]
+on = [ "g", "T" ]
+run = "tab_switch -1 --relative"
+desc = "Aba anterior (estilo Vim)"
+
+[[manager.prepend_keymap]]
+on = [ "g", "1" ]
+run = "tab_switch 0"
+desc = "Ir para aba 1 (estilo Vim)"
+
+[[manager.prepend_keymap]]
+on = [ "g", "2" ]
+run = "tab_switch 1"
+desc = "Ir para aba 2 (estilo Vim)"
+
+[[manager.prepend_keymap]]
+on = [ "g", "3" ]
+run = "tab_switch 2"
+desc = "Ir para aba 3 (estilo Vim)"
+
+[[manager.prepend_keymap]]
+on = [ "g", "4" ]
+run = "tab_switch 3"
+desc = "Ir para aba 4 (estilo Vim)"
+
+[[manager.prepend_keymap]]
+on = [ "g", "5" ]
+run = "tab_switch 4"
+desc = "Ir para aba 5 (estilo Vim)"
+
+# Reordenar abas
+[[manager.prepend_keymap]]
+on = [ "<C-S-Right>" ]
+run = "tab_swap 1"
+desc = "Mover aba para direita"
+
+[[manager.prepend_keymap]]
+on = [ "<C-S-Left>" ]
+run = "tab_swap -1"
+desc = "Mover aba para esquerda"

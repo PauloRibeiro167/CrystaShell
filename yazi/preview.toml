@@ -1,0 +1,49 @@
+# CrystaShell # Imagens - visualizador otimizado para VS Code
+[previewer.image]
+run = "/home/paulo/projetos/CrystaShell/scripts/vscode_image_viewer.sh \"$1\" \"$2\" \"$3\""ção de Previews do Yazi
+# Configuração otimizada para VS Code terminal
+
+[plugin]
+
+# Plugin de preview otimizado para imagens
+prepend_previewers = [
+    # Usar script personalizado otimizado
+    { name = "crystashell", run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh", sync = false },
+]
+
+# Configurações específicas de preview para imagens
+[previewer]
+
+# Imagens - configuração conservadora para VS Code
+[previewer.image]
+run = '''
+if [ "$TERM_PROGRAM" = "vscode" ]; then
+    # VS Code - usar ASCII simples
+    chafa --format=symbols --fill=space --symbols=ascii --colors=16 --dither=none -s "${2}x${3}" "$1" 2>/dev/null || chafa --colors=8 --symbols=ascii -s "30x10" "$1"
+else
+    # Outros terminais - configuração normal
+    /home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh "$1" "$2" "$3" "$4"
+fi
+'''
+
+# Outros previewers com scripts otimizados
+[previewer.archive]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""
+
+[previewer.code]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""
+
+[previewer.json]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""
+
+[previewer.video]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""
+
+[previewer.audio]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""
+
+[previewer.pdf]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""
+
+[previewer.office]
+run = "/home/paulo/projetos/CrystaShell/scripts/yazi_preview.sh \"$1\" \"$2\" \"$3\" \"$4\""

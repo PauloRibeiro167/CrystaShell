@@ -1,0 +1,27 @@
+{
+    "editor.fontFamily": "'JetBrainsMono NF', 'JetBrains Mono Nerd Font', 'JetBrainsMono NFM', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "'JetBrainsMono NF', 'JetBrains Mono Nerd Font', 'JetBrainsMono NFM', monospace",
+    "terminal.integrated.fontSize": 14,
+    "editor.fontSize": 14,
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.action.terminal.focusFind"
+    ],
+    "files.associations": {
+        "*.lua": "lua",
+        "*.toml": "toml",
+        "yazi.lua": "lua",
+        "theme.lua": "lua",
+        "keymap.lua": "lua",
+        "init.lua": "lua"
+    },
+    "editor.renderWhitespace": "selection",
+    "editor.minimap.enabled": true,
+    "workbench.colorTheme": "Dracula",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "block",
+    "terminal.integrated.drawBoldTextInBrightColors": false,
+    "terminal.integrated.minimumContrastRatio": 1
+}

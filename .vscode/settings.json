@@ -19,7 +19,7 @@
     },
     "editor.renderWhitespace": "selection",
     "editor.minimap.enabled": true,
-    "workbench.colorTheme": "Dracula",
+    "workbench.colorTheme": "One Monokai 80s",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "block",
     "terminal.integrated.drawBoldTextInBrightColors": false,

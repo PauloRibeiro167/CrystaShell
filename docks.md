@@ -15,6 +15,7 @@ sudo apt update && sudo apt install yazi ffmpegthumbnailer ffmpeg p7zip-full jq 
 **Dependências adicionais instaladas**:
 - **zoxide**: Navegação rápida entre diretórios
 - **Catppuccin Mocha**: Tema visual otimizado
+- **ueberzug**: ✨ **NOVA!** Biblioteca para preview de imagens de alta qualidade
 
 ## Configuração de Imagens Otimizada ✨
 
@@ -25,15 +26,21 @@ A configuração do CrystaShell inclui otimizações específicas para preview d
 [preview]
 wrap            = "no"
 tab_size        = 4
-max_width       = 600      # Largura máxima otimizada
-max_height      = 900      # Altura máxima otimizada  
+max_width       = 900      # Aumentado para aproveitar ueberzug
+max_height      = 700      # Otimizado para qualidade  
 cache_dir       = "~/.cache/yazi"
-image_delay     = 30       # Delay otimizado para carregamento
-image_filter    = "lanczos3"  # Filtro de alta qualidade
-image_quality   = 90       # Qualidade de imagem 90%
-ueberzug_scale  = 1
+image_delay     = 10       # Reduzido com ueberzug
+image_filter    = "lanczos3"  # Melhor filtro para ueberzug
+image_quality   = 90       # Qualidade máxima permitida (50-90)
+ueberzug_scale  = 1.5      # Aumentado para melhor qualidade
 ueberzug_offset = [ 0, 0, 0, 0 ]
 ```
+
+### ✨ Melhorias com Ueberzug
+- **Preview de alta qualidade**: Imagens nítidas e detalhadas
+- **Suporte a transparência**: Melhor renderização de PNGs
+- **Performance otimizada**: Cache inteligente e carregamento rápido
+- **Compatibilidade**: Funciona em terminais modernos e VS Code
 
 ### Visualizadores de Imagem Configurados
 - **Feh**: Visualizador rápido e leve

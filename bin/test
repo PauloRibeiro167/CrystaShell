@@ -1,0 +1,175 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'optparse'
+require 'fileutils'
+
+class TestRunner
+  def initialize
+    @options = {
+      pattern: nil,
+      format: 'progress',
+      verbose: false,
+      coverage: false,
+      fail_fast: false,
+      seed: nil,
+      profile: false
+    }
+    
+    @project_root = File.expand_path('..', __dir__)
+    @spec_dir = File.join(@project_root, 'spec')
+  end
+
+  def run(args = ARGV)
+    parse_options(args)
+    setup_environment
+    execute_tests
+  end
+
+  private
+
+  def parse_options(args)
+    parser = OptionParser.new do |opts|
+      opts.banner = "Uso: #{File.basename($0)} [opções] [arquivos]"
+      opts.separator ""
+      opts.separator "Opções:"
+
+      opts.on("-p", "--pattern PATTERN", "Executa apenas testes que correspondem ao padrão") do |pattern|
+        @options[:pattern] = pattern
+      end
+
+      opts.on("-f", "--format FORMAT", "Formato de saída (progress, doc, json, html)") do |format|
+        @options[:format] = format
+      end
+
+      opts.on("-v", "--verbose", "Saída verbosa") do
+        @options[:verbose] = true
+      end
+
+      opts.on("-c", "--coverage", "Habilita cobertura de código") do
+        @options[:coverage] = true
+      end
+
+      opts.on("--fail-fast", "Para na primeira falha") do
+        @options[:fail_fast] = true
+      end
+
+      opts.on("-s", "--seed SEED", "Define seed para ordem dos testes") do |seed|
+        @options[:seed] = seed
+      end
+
+      opts.on("--profile", "Mostra os testes mais lentos") do
+        @options[:profile] = true
+      end
+
+      opts.on("-h", "--help", "Mostra esta mensagem de ajuda") do
+        puts opts
+        exit
+      end
+
+      opts.separator ""
+      opts.separator "Exemplos:"
+      opts.separator "  bin/test                                    # Executa todos os testes"
+      opts.separator "  bin/test spec/quick_status_spec.rb          # Executa teste específico"
+      opts.separator "  bin/test -p 'Temas'                        # Executa testes que contêm 'Temas'"
+      opts.separator "  bin/test -f doc                             # Formato de documentação"
+      opts.separator "  bin/test -c                                 # Com cobertura de código"
+      opts.separator "  bin/test --fail-fast                       # Para na primeira falha"
+      opts.separator "  bin/test --profile                         # Mostra testes mais lentos"
+    end
+
+    begin
+      @remaining_args = parser.parse(args)
+    rescue OptionParser::InvalidOption => e
+      puts "Erro: #{e.message}"
+      puts parser
+      exit 1
+    end
+  end
+
+  def setup_environment
+    # Verifica se estamos no diretório correto
+    unless File.exist?(File.join(@project_root, 'Gemfile'))
+      puts "Erro: Execute este comando a partir do diretório raiz do projeto CrystaShell"
+      exit 1
+    end
+
+    # Verifica se as dependências estão instaladas
+    unless system('bundle check > /dev/null 2>&1')
+      puts "⚠️  Dependências não instaladas. Executando bundle install..."
+      unless system('bundle install')
+        puts "❌ Falha ao instalar dependências"
+        exit 1
+      end
+    end
+
+    # Define variáveis de ambiente para teste
+    ENV['CRYSTASHELL_ENV'] = 'test'
+    ENV['CRYSTASHELL_ROOT'] = @project_root
+  end
+
+  def execute_tests
+    rspec_args = build_rspec_args
+    command = "bundle exec rspec #{rspec_args.join(' ')}"
+    
+    puts "🧪 Executando testes do CrystaShell..."
+    puts "📂 Diretório: #{@project_root}"
+    puts "🔧 Comando: #{command}" if @options[:verbose]
+    puts "-" * 50
+
+    # Executa os testes
+    success = system(command)
+    
+    puts "-" * 50
+    if success
+      puts "✅ Todos os testes passaram!"
+    else
+      puts "❌ Alguns testes falharam"
+      exit 1
+    end
+  end
+
+  def build_rspec_args
+    args = []
+
+    # Arquivos específicos ou padrão
+    if @remaining_args.any?
+      args.concat(@remaining_args)
+    else
+      args << @spec_dir
+    end
+
+    # Formato
+    args << "--format" << @options[:format]
+
+    # Padrão de filtro
+    if @options[:pattern]
+      args << "--example" << "*#{@options[:pattern]}*"
+    end
+
+    # Opções adicionais
+    args << "--fail-fast" if @options[:fail_fast]
+    args << "--profile" if @options[:profile]
+    
+    if @options[:seed]
+      args << "--seed" << @options[:seed]
+    end
+
+    # Cores e formatação
+    args << "--color"
+    args << "--tty" unless ENV['CI']
+
+    # Cobertura (se solicitada)
+    if @options[:coverage]
+      args << "--require" << "#{@project_root}/spec/support/coverage"
+    end
+
+    args
+  end
+end
+
+# Executa apenas se chamado diretamente
+if __FILE__ == $0
+  TestRunner.new.run
+end

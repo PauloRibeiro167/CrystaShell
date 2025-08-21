@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Script para corrigir caminhos nos testes de funcionalidades
+
+require 'fileutils'
+
+class TestPathFixer
+  def initialize
+    @crystashell_root = File.expand_path('..', __dir__)
+    @spec_file = File.join(@crystashell_root, 'spec', 'crystashell_funcionalidades_spec.rb')
+  end
+
+  def fix_paths
+    content = File.read(@spec_file)
+    
+    # Corrige o helper crystallshell_root nos testes para usar o caminho correto
+    # em vez de buscar a partir do spec/
+    fixes = [
+      # Corrige caminhos do executable_path no quick_status_spec.rb
+      {
+        file: File.join(@crystashell_root, 'spec', 'quick_status_spec.rb'),
+        from: "crystashell_root = File.expand_path('spec', __dir__)",
+        to: "crystashell_root = File.expand_path('..', __dir__)"
+      }
+    ]
+    
+    puts "🔧 Corrigindo caminhos nos arquivos de teste..."
+    
+    # Verifica se o quick_status_spec.rb tem o problema
+    quick_status_file = File.join(@crystashell_root, 'spec', 'quick_status_spec.rb')
+    if File.exist?(quick_status_file)
+      quick_content = File.read(quick_status_file)
+      if quick_content.include?("File.expand_path('spec'")
+        puts "  ❌ Encontrado problema no quick_status_spec.rb"
+        new_content = quick_content.gsub(
+          "File.expand_path('spec', __dir__)",
+          "File.expand_path('..', __dir__)"
+        )
+        File.write(quick_status_file, new_content)
+        puts "  ✅ Corrigido quick_status_spec.rb"
+      else
+        puts "  ✅ quick_status_spec.rb já está correto"
+      end
+    end
+    
+    puts "✅ Correções de caminho concluídas!"
+  end
+end
+
+if __FILE__ == $0
+  fixer = TestPathFixer.new
+  fixer.fix_paths
+end

@@ -41,48 +41,13 @@ chmod +x bin/gerenciador_terminal
 ./bin/gerenciador_terminal
 ```
 
-### 2. Integração com Yazi (File Manager) ✨
-
-**Status**: ✅ **Configurado e Otimizado**
-
-O CrystaShell inclui configuração completa do Yazi seguindo as melhores práticas:
-
-#### Configuração Automática
+### 2. Integração com Yazi (File Manager)
 ```bash
-# Dependências instaladas automaticamente
-sudo apt install yazi ffmpegthumbnailer ffmpeg p7zip-full jq poppler-utils fd-find ripgrep fzf imagemagick
+# Instalação automática
+./scripts/install_yazi_integration.sh
+source ~/.zshrc
 
-# Wrapper de shell configurado no ~/.zshrc
-function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
-```
-
-#### Recursos de Preview de Imagem
-- **Filtro Lanczos3**: Redimensionamento de alta qualidade
-- **Qualidade 90%**: Imagens nítidas e detalhadas
-- **Cache otimizado**: Preview rápido de arquivos grandes
-- **Formatos suportados**: JPEG, PNG, GIF, SVG, AVIF, HEIF, JXL
-
-#### Visualizadores Configurados
-- **Feh**: Visualizador rápido e leve
-- **Eye of Gnome**: Visualizador padrão do GNOME
-- **MPV**: Player para vídeos e animações
-- **Zathura/Evince**: Visualizadores de PDF
-
-#### Como Usar
-```bash
-y          # Abre Yazi com navegação automática
-~          # Mostra atalhos de teclado no Yazi
-Enter      # Abre arquivo com visualizador padrão
-o          # Menu de abertura com opções
-Space      # Selecionar arquivo
-```
+# Verificar instalação
 ./scripts/verify_integration.sh
 ```
 
